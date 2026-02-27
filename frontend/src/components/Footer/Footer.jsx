@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,8 +16,12 @@ const Footer = () => {
             laboriosam minus assumenda fuga.
           </p>
           <div className="footer-social-icons">
-            <img src={assets.facebook_icon} alt="" />
-            <img src={assets.twitter_icon} alt="" />
+            <Link to="https://www.facebook.com/">
+              <img src={assets.facebook_icon} alt="" />
+            </Link>
+            <Link to="https://x.com/">
+              <img src={assets.twitter_icon} alt="" />
+            </Link>
             <img src={assets.linkedin_icon} alt="" />
           </div>
         </div>
