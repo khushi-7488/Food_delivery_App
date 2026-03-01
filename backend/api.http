@@ -1,0 +1,8 @@
+@baseUrl = http://localhost:4000
+
+### 1) get all list
+
+GET {{baseUrl}}/api/food/list
+Content-Type: application/json
+
+### 2) 

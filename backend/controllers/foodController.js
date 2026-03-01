@@ -3,17 +3,18 @@ import fs from 'fs';
 
 //add food
 const addFood = async (req, res) => {
+    // to extract file from request file 
     // let image_filename = `${req.file.filename}`;
     const food = new foodModel({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
-        // image:image_filename
+        image: req.file.filename,
     })
     try {
         await food.save();
-        res.status(200).json({ success: "Food added" })
+        res.json({ success: "true" , message:"food added successfully"})
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "failed to add food" })
@@ -35,14 +36,14 @@ const listFood = async (req, res) => {
 const removeFood = async (req, res) => {
     try {
         const food = await foodModel.findByIdAndDelete(req.body.id);
-        // fs.unlink(`uploads${food.image}`, () => { });
+        fs.unlink(`uploads${food.image}`, () => { });
 
         if (!food) {
             res.status(400).json({ error: "food is not found" });
         }
         res.status(200).json({ success: "food is deleted successfully" });
     } catch (error) {
-        console.log(err);
+        console.log(error);
         res.status(500).json({ error: "failed to delete food" })
     }
 }
