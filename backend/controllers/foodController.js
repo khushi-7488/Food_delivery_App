@@ -3,21 +3,24 @@ import fs from 'fs';
 
 //add food
 const addFood = async (req, res) => {
-    // to extract file from request file 
-    // let image_filename = `${req.file.filename}`;
+    let image_filename = req.file ? req.file.filename : null;
+    if (!image_filename) {
+        return res.status(400).json({ success: false, message: "No image file uploaded." })
+    }
+
     const food = new foodModel({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
-        image: req.file.filename,
+        image: image_filename,
     })
     try {
         await food.save();
-        res.json({ success: "true" , message:"food added successfully"})
+        res.json({ success: "true", message: "food added successfully" })
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "failed to add food" })
+        res.json({ success: false, mesage: "Error adding food." })
     }
 }
 
@@ -25,26 +28,24 @@ const addFood = async (req, res) => {
 const listFood = async (req, res) => {
     try {
         const foods = await foodModel.find({});
-        res.json(foods);
+        res.json({ success: true, data: foods });
     } catch (error) {
         console.log(err);
-        res.status(500).json({ error: "failed to fetch list of foods" })
+        res.json({ success: false, message: "Error listing foods" })
     }
 }
 
 //to remove food item
 const removeFood = async (req, res) => {
     try {
-        const food = await foodModel.findByIdAndDelete(req.body.id);
-        fs.unlink(`uploads${food.image}`, () => { });
+        const food = await foodModel.findById(req.body.id);
+        fs.unlink(`uploads/${food.image}`, () => { });
 
-        if (!food) {
-            res.status(400).json({ error: "food is not found" });
-        }
-        res.status(200).json({ success: "food is deleted successfully" });
+        await foodModel.findByIdAndDelete(req.body.id);
+        res.json({ success: true, message: "Food item removed successfully" })
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "failed to delete food" })
+        res.json({success: false, message: "Error removing food item"})
     }
 }
 

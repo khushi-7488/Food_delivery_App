@@ -3,9 +3,9 @@ import "./Order.css"
 const Order = () => {
   return (
     <div>
-      
+      ORders
     </div>
   )
 }
 
-export default Order
+export default Order;
