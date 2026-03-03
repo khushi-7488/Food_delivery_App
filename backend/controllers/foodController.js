@@ -30,7 +30,7 @@ const listFood = async (req, res) => {
         const foods = await foodModel.find({});
         res.json({ success: true, data: foods });
     } catch (error) {
-        console.log(err);
+        console.log(error);
         res.json({ success: false, message: "Error listing foods" })
     }
 }

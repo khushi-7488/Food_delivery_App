@@ -52,7 +52,7 @@ const List = ({ url }) => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>${item.price}</p>
-              <p onClick={() => removeFood(item._id)}>X</p>
+              <p className="cursor" onClick={() => removeFood(item._id)}>X</p>
             </div>
           );
         })}
