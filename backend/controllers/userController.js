@@ -10,7 +10,12 @@ const loginUser = async(req,res) =>{
 
 //register user
 const registerUser = async(req,res) =>{
-
+const {name, password,email} =req.body;
+try {
+    
+} catch (error) {
+    
+}
 }
 
 export {loginUser, registerUser};
