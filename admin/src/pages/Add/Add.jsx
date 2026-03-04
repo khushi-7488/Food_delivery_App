@@ -12,7 +12,7 @@ const Add = ({ url }) => {
     price: "",
     category: "Salad",
   });
-
+  // take the data from input field and save in the state variable
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -58,7 +58,7 @@ const Add = ({ url }) => {
               src={image ? URL.createObjectURL(image) : assets.upload_area}
             />
           </label>
-          
+
           {/* on click, to get image  */}
           <input
             onChange={(e) => setImage(e.target.files[0])}
