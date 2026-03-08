@@ -44,22 +44,27 @@ const Order = ({ url }) => {
                 <p className="order-item-name">
                   {order.address.firstName + " " + order.address.lastName}
                 </p>
-                {/* <p className="order-item-address"> */}
-                  <div>
-                    <p>{order.address.street + ","}</p>
-                    <p>
-                      {order.address.city +
-                        ", " +
-                        order.address.state +
-                        ", " +
-                        order.address.country +
-                        ", " +
-                        order.address.zipcode}
-                    </p>
-                  </div>
-                {/* </p> */}
-                
+                <div className="order-item-address">
+                  <p>{order.address.street + ","}</p>
+                  <p>
+                    {order.address.city +
+                      ", " +
+                      order.address.state +
+                      ", " +
+                      order.address.country +
+                      ", " +
+                      order.address.zipcode}
+                  </p>
+                </div>
+                <p className="order-item-phone">{order.address.phone}</p>
               </div>
+              <p>Items: {order.items.length}</p>
+              <p>${order.amount}</p>
+              <select>
+                <option value="Food processing">Food processing</option>
+                <option value="Out for delivery">Out for delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
             </div>
           );
         })}
