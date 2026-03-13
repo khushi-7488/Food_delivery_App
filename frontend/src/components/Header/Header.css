@@ -5,6 +5,11 @@
     background-size: contain;
     position: relative;
 }
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
 .header-contents{
     position: absolute;
     display: flex;
